@@ -6,6 +6,8 @@ import { syncHistoryWithStore } from 'react-router-redux'
 import createStore from './store/createStore'
 import AppContainer from './containers/AppContainer'
 
+import Grid from './src/grid'
+
 // ========================================================
 // Browser History Setup
 // ========================================================
@@ -44,12 +46,12 @@ let render = (routerKey = null) => {
   const routes = require('./routes/index').default(store)
 
   ReactDOM.render(
-    <AppContainer
+    <AppContainer>
       store={store}
       history={history}
       routes={routes}
       routerKey={routerKey}
-    />,
+    <AppContainer>
     MOUNT_NODE
   )
 }
@@ -57,12 +59,12 @@ let render = (routerKey = null) => {
 // Enable HMR and catch runtime errors in RedBox
 // This code is excluded from production bundle
 if (__DEV__ && module.hot) {
-  const renderApp = render
-  const renderError = (error) => {
-    const RedBox = require('redbox-react')
+ // const renderApp = render;
+//const renderError = (error) => {
+   // const RedBox = require('redbox-react')
 
-    ReactDOM.render(<RedBox error={error} />, MOUNT_NODE)
-  }
+ //	ReactDOM.render(<RedBox error={error} >, MOUNT_NODE)
+  //}
   render = () => {
     try {
       renderApp(Math.random())
@@ -76,4 +78,7 @@ if (__DEV__ && module.hot) {
 // ========================================================
 // Go!
 // ========================================================
+
+
+
 render()

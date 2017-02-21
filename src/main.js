@@ -56,7 +56,7 @@ let render = (routerKey = null) => {
 
 // Enable HMR and catch runtime errors in RedBox
 // This code is excluded from production bundle
-if (__DEV__ && module.hot) {
+if (!(__DEV__ && module.hot)) {
   const renderApp = render
   const renderError = (error) => {
     const RedBox = require('redbox-react')

@@ -1,26 +1,31 @@
 import React, { PropTypes } from 'react'
 import { Router } from 'react-router'
 import { Provider } from 'react-redux'
+import d3 from "d3";
+import MarkerWindowLeft from '../components/Grid/MarkerWindowLeft';
+import SquareGrid from '../components/Grid/SquareGrid';
 
 class AppContainer extends React.Component {
-  static propTypes = {
-    history: PropTypes.object.isRequired,
-    routes: PropTypes.object.isRequired,
-    routerKey: PropTypes.number,
-    store: PropTypes.object.isRequired
+  constructor(props) {
+     super(props);
+     this.state = {
+        xDimension : [10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
+        markerCount: 4
+     }
   }
-
-  render () {
-    const { history, routes, routerKey, store } = this.props
-
-    return (
-      <Provider store={store}>
-        <div style={{ height: '100%' }}>
-          <Router history={history} children={routes} key={routerKey} />
-        </div>
-      </Provider>
-    )
-  }
+ render() {
+  return (
+    <div>
+      <div>
+          <h1> Markers - Grid Drag and Drop </h1>
+      </div>
+      <div>
+        <MarkerWindowLeft />
+        <SquareGrid xDimensionArrProp={this.state.xDimension} markerCount={this.state.markerCount}/>
+      </div>
+    </div>
+  )
+ }
 }
 
 export default AppContainer
